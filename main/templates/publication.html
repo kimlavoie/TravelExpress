@@ -1,0 +1,6 @@
+<h1>Publier</h1>
+<form action="publication" method="post"> {% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Envoyer" />
+</form>
+<p><a href="/">Retour au menu principal</a></p>

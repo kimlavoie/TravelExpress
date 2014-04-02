@@ -1,0 +1,8 @@
+<h1>Inscription</h1>
+<form action="inscription" method="post"> {% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Envoyer" />
+</form>
+<p>
+	Déjà inscrit? <a href="connexion">Connecte-toi!</a>
+</p>

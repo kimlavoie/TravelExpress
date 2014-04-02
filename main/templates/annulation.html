@@ -1,0 +1,13 @@
+<p><a href="/">Retour</a></p>
+{% for voyage in voyages %}
+	<form action="annulation?id={{voyage.id}}" method="POST">
+	{% csrf_token %}
+		<p>-------------------------------------------------------</p>
+		<p>Conducteur : {{voyage.conducteur}}</p>
+		<p>Source : {{voyage.source}}</p>
+		<p>Destination : {{voyage.destination}}</p>
+		<p>Depart : {{voyage.date_depart}}</p>
+		<input type="submit" value="annulation" />
+	</form>
+	
+{% endfor %}

@@ -1,0 +1,36 @@
+<h1>Voyages disponibles</h1>
+<p><a href="/">Retour au menu principal</a></p>
+
+<form action="recherche" method="post">
+{% csrf_token %}
+	<p>Recherche</p>
+	<p>Source: <input type="text" name="source" /></p>
+	<p>Destination: <input type="text" name="destination" /></p>
+	<p>Prix maximum: <input type="number" name="prix" /></p>
+	<p><input type="submit" value="Recherche" /></p>
+</form>
+
+{% for Voyage in query_results %}
+	<form action="VoyageInscription?id={{ Voyage.id }}" method="post">
+	{% csrf_token %}	
+		<p>-------------------------------------------------------------</p>
+		<p>Conducteur : {{Voyage.conducteur}}</p>
+		<p>Source     : {{Voyage.source}}</p>
+		<p>Destination: {{Voyage.destination}} </p>
+		<p>Places     : {{Voyage.places_disponibles}}</p>
+		<p>Depart     : {{Voyage.date_depart}}</p>
+		<p>Prix       : {{Voyage.prix}}</p>
+		<p>Infos      : {{Voyage.informations_supplementaires}}</p>
+		<p>Passagers : </p>
+		{% for passager in Voyage.passagers.all %}
+			<p>{{passager.first_name}}</p>
+		{% endfor %}
+		{% if exclu %}
+			<p>Vous ne pouvez plus réserver, vous êtes exclu.</p>
+		{% elif Voyage.places_disponibles|slugify == "0" %}
+			<p>COMPLET</p>
+		{% else %}
+			<input type="submit" value="Reservation" name="{{Usager.first_name}}" />
+		{% endif %}
+	</form>
+{% endfor %}

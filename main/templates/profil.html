@@ -1,0 +1,22 @@
+<h1>Votre profil</h1>
+<p>Nom d'usager: {{ usager.username }} </p>
+<p>Nom: {{ usager.first_name }} {{ usager.last_name }}</p>
+<p>Courriel: {{ usager.email }} </p>
+<p>Téléphone: {{ usager.telephone }} </p>
+<p>Conducteur: 
+	{% if usager.conducteur %}
+		Oui
+	{% else %}
+		Non
+	{% endif %}
+</p>
+<p>Restrictions: {{ usager.restrictions }} </p>
+<p>Annulations: {{ usager.annulations }} </p>
+<p>Exclu: 
+	{% if usager.exclu %}
+		Oui
+	{% else %}
+		Non 
+	{% endif %}
+</p>
+<p><a href="/">Retour au menu principal</a></p>
